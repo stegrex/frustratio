@@ -1,0 +1,81 @@
+body {
+    /*background-color: GhostWhite;*/
+    background-image: url("/static/frustratio-background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.header {
+    color: GhostWhite;
+    /*color: LightGreen;*/
+    position: fixed;
+    width: 100%;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    border-bottom: 1px solid LightGray;
+    opacity: 0.5;
+    z-index: 1;
+    background-color: DimGray;
+    background: -webkit-repeating-linear-gradient(Dimgray, Dimgray 50%, Gray 100%);
+    background: -o-repeating-linear-gradient(Dimgray, Dimgray 50%, Gray 100%);
+    background: -moz-repeating-linear-gradient(Dimgray, Dimgray 50%, Gray 100%);
+    background: repeating-linear-gradient(Dimgray, Dimgray 50%, #Gray 100%);
+    padding-bottom: 10px;
+}
+
+.header h1 {
+    letter-spacing: 3px;
+    text-align: center;
+}
+.header h2 {
+    font-size: small;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.header a {
+    margin-top: -60px;
+    margin-right: 10px;
+}
+
+.container {
+    background-color: Gainsboro;
+    padding-bottom: 100%;
+    opacity: 0.9;
+}
+
+.modal-dialog {
+    margin-top: 150px;
+}
+
+form.main {
+    margin-top: 120px;
+}
+
+.message-panel {
+    border-bottom: 1px solid LightGray;
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.message-panel:first-child {
+    border-top: 1px solid LightGray;
+}
+.message-username {
+    font-size: small;
+    /*color: Gray;*/
+    color: LightGreen;
+}
+.message-broadcast {
+    font-size: large;
+    /*color: PaleGreen;*/
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.message-timestamp {
+    font-size: small;
+    color: LightGray;
+}
