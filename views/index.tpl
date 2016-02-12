@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Index</title>
+    <title>frustrat.io</title>
     <script src="/static/lib/socket.io-1.4.5.js?{{deployTag}}"></script>
     <script src="/static/lib/jquery-2.2.0.js?{{deployTag}}"></script>
     <script src="/static/lib/bootstrap-3.3.6-dist/js/bootstrap.min.js?{{deployTag}}"></script>
@@ -14,6 +14,10 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 
+    <meta charset="utf-8">
+    <meta name="description" content="frustrat.io: Broadcast your frustration.">
+    <meta name="keywords" content="frustrat.io">
+    <meta name="author" content="maxchen675">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
