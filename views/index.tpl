@@ -4,12 +4,12 @@
 
 <head>
     <title>Index</title>
-    <script src="/static/lib/socket.io-1.4.5.js"></script>
-    <script src="/static/lib/jquery-2.2.0.js"></script>
-    <script src="/static/lib/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-    <script src="/static/js/frustratio.js"></script>
-    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.6-dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/static/css/frustratio.css" />
+    <script src="/static/lib/socket.io-1.4.5.js?{{deployTag}}"></script>
+    <script src="/static/lib/jquery-2.2.0.js?{{deployTag}}"></script>
+    <script src="/static/lib/bootstrap-3.3.6-dist/js/bootstrap.min.js?{{deployTag}}"></script>
+    <script src="/static/js/frustratio.js?{{deployTag}}"></script>
+    <link rel="stylesheet" href="/static/lib/bootstrap-3.3.6-dist/css/bootstrap.min.css?{{deployTag}}" />
+    <link rel="stylesheet" href="/static/css/frustratio.css?{{deployTag}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 

@@ -10,6 +10,7 @@
 - Cleaned up frontend functionality and layout.
     - Added custom CSS styles.
     - Implemented loading of last n number of broadcasts upon signon.
+- Added deployTag for controlling caching of static elements.
 - Fixed various bugs.
 
 # 2016-02-11

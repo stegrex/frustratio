@@ -55,6 +55,7 @@ def handle_event(sid, json):
             )
         })
 
+deployTag = open('deploy_tag', 'r').read().strip()
 app = bottle.Bottle()
 
 @app.route('/')
@@ -74,6 +75,7 @@ def render_index():
         sessionID = ''
     return bottle.template(
         'index',
+        deployTag=deployTag,
         messageInputs=messageInputs,
         sessionID=sessionID
     )
