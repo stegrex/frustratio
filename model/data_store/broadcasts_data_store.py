@@ -84,7 +84,11 @@ class BroadcastsDataStore():
         while node and count < n:
             output.append(node)
             #print(node.to_dictionary())
-            nextNodeID = node.nextBroadcastIDs.get('GLOBAL')[0]
+            nextBroadcastIDs = node.nextBroadcastIDs.get('GLOBAL')
+            if nextBroadcastIDs and len(nextBroadcastIDs) >= 1:
+                nextNodeID = node.nextBroadcastIDs.get('GLOBAL')[0]
+            else:
+                nextNodeID = None
             node = self.read(nextNodeID)
             count += 1
         return output
