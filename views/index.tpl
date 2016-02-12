@@ -10,6 +10,10 @@
     <script src="/static/js/frustratio.js?{{deployTag}}"></script>
     <link rel="stylesheet" href="/static/lib/bootstrap-3.3.6-dist/css/bootstrap.min.css?{{deployTag}}" />
     <link rel="stylesheet" href="/static/css/frustratio.css?{{deployTag}}" />
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -24,6 +28,10 @@
         <form id="client-input" class="main">
             <div class="alert alert-info" role="alert">
                 New features and messages are currently being developed! Stay tuned for new stuff!
+            </div>
+            <div class="form-group">
+                <input id="audio-toggle" checked data-toggle="toggle" type="checkbox" />
+                <span class="glyphicon glyphicon-volume-up"></span>
             </div>
             {{!messageInputs}}
             <!--

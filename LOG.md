@@ -11,6 +11,8 @@
     - Added custom CSS styles.
     - Implemented loading of last n number of broadcasts upon signon.
 - Added deployTag for controlling caching of static elements.
+- Recorded and included audio.
+- Implemented audio toggle to mute all broadcasted sounds.
 - Fixed various bugs.
 
 # 2016-02-11

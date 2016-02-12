@@ -4,18 +4,23 @@ class MessagesDataStore():
 
     def __init__(self):
         self.messagesData = {
-            'goddammit0' : {
-                'text' : 'Goddammit.',
-                'url' : 'X'
+            'fuck0' : {
+                'text' : 'Fuck!',
+                'url' : '/static/audio/fuck0.wav'
             },
-            'goddammit1' : {
-                'text' : 'GodDAMMit!!!',
-                'url' : 'X'
+            'fuck1' : {
+                'text' : 'Fuuuuuck...',
+                'url' : '/static/audio/fuck1.wav'
+            },
+            'unfuck0' : {
+                'text' : 'This needs to be unfucked.',
+                'url' : '/static/audio/unfuck0.wav'
             }
         }
         self.messageKeys = [
-            'goddammit0',
-            'goddammit1'
+            'fuck0',
+            'fuck1',
+            'unfuck0'
         ]
 
     def get_message(self, id):

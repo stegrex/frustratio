@@ -8,6 +8,7 @@
         <button type="button" class="btn btn-default play">
             <span class="glyphicon glyphicon-play"></span>
         </button>
+        <audio id="audio-{{message.id}}" visibility="hidden" src="{{message.url}}" preload="auto"></audio>
     </div>
     {{message.text}}
 </div>

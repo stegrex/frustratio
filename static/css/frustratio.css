@@ -65,7 +65,9 @@ form.main {
 }
 .message-username {
     font-size: small;
-    /*color: Gray;*/
+    color: LightGray;
+}
+.message-username .name {
     color: LightGreen;
 }
 .message-broadcast {
