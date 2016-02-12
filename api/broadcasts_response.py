@@ -1,4 +1,5 @@
 import uuid
+import cgi
 from model.data_store.broadcasts_data_store import BroadcastsDataStore
 from model.data_store.messages_data_store import MessagesDataStore
 
@@ -35,6 +36,8 @@ class BroadcastsResponse():
     def get_last_broadcasts_response(self, n):
         broadcasts = self.get_last_broadcasts(n)
         for x in range(len(broadcasts)):
+            displayName = cgi.escape(broadcasts[x].broadcasterData['displayName'])
+            broadcasts[x].broadcasterData['displayName'] = displayName
             broadcasts[x] = broadcasts[x].to_dictionary()
         return broadcasts
 
