@@ -19,23 +19,27 @@ class BroadcastsDataStore():
     def get_empty_broadcast(self):
         return Broadcast()
 
-    def create(self, broadcast):
+    def create(self, broadcast, appType=None):
         '''Store a newly created Broadcast instance.
         '''
+        if appType:
+            namespace = appType + '_GLOBAL'
+        else:
+            namespace = 'GLOBAL'
         broadcast.createdTime = int(time.time())
-        head = self.read_head()
+        head = self.read_head(namespace)
         if head:
-            if 'GLOBAL' in broadcast.nextBroadcastIDs:
-                broadcast.nextBroadcastIDs['GLOBAL'].append(head.globalID)
+            if namespace in broadcast.nextBroadcastIDs:
+                broadcast.nextBroadcastIDs[namespace].append(head.globalID)
             else:
-                broadcast.nextBroadcastIDs['GLOBAL'] = [head.globalID]
+                broadcast.nextBroadcastIDs[namespace] = [head.globalID]
             response = self.driver.replace(
-                'GLOBAL_HEAD',
+                namespace + '_HEAD',
                 broadcast.to_dictionary()
             )
         else:
             response = self.driver.insert(
-                'GLOBAL_HEAD',
+                namespace + '_HEAD',
                 broadcast.to_dictionary()
             )
         response = self.driver.insert(
@@ -48,7 +52,7 @@ class BroadcastsDataStore():
             json.dumps(broadcast.to_dictionary())
         )
         self.cache.create(
-            'GLOBAL_HEAD',
+            namespace + '_HEAD',
             json.dumps(broadcast.to_dictionary())
         )
         # TODO: Throw exception here instead.
@@ -76,17 +80,21 @@ class BroadcastsDataStore():
         broadcast.from_dictionary(response)
         return broadcast
 
-    def get_last(self, n):
+    def get_last(self, n, appType):
         output = []
         count = 0
-        node = self.read_head()
+        if appType:
+            namespace = appType + '_GLOBAL'
+        else:
+            namespace = 'GLOBAL'
+        node = self.read_head(namespace)
         #print(node.to_dictionary())
         while node and count < n:
             output.append(node)
             #print(node.to_dictionary())
-            nextBroadcastIDs = node.nextBroadcastIDs.get('GLOBAL')
+            nextBroadcastIDs = node.nextBroadcastIDs.get(namespace)
             if nextBroadcastIDs and len(nextBroadcastIDs) >= 1:
-                nextNodeID = node.nextBroadcastIDs.get('GLOBAL')[0]
+                nextNodeID = node.nextBroadcastIDs.get(namespace)[0]
             else:
                 nextNodeID = None
             node = self.read(nextNodeID)

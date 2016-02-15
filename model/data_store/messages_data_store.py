@@ -15,13 +15,32 @@ class MessagesDataStore():
             'unfuck0' : {
                 'text' : 'This needs to be unfucked.',
                 'url' : '/static/audio/unfuck0.wav'
+            },
+            'dang0' : {
+                'text' : 'Dangit!',
+                'url' : '/static/audio/dang0.mp3'
+            },
+            'crap0' : {
+                'text' : 'Crap.',
+                'url' : '/static/audio/crap0.mp3'
+            },
+            'nuts0' : {
+                'text' : 'Aw, nuts.',
+                'url' : '/static/audio/nuts0.mp3'
             }
         }
-        self.messageKeys = [
-            'fuck0',
-            'fuck1',
-            'unfuck0'
-        ]
+        self.messageKeys = {
+            '' : [
+                'fuck0',
+                'fuck1',
+                'unfuck0'
+            ],
+            'CLEAN' : [
+                'dang0',
+                'crap0',
+                'nuts0'
+            ]
+        }
 
     def get_message(self, id):
         messageData = self.messagesData.get(id)
@@ -32,9 +51,11 @@ class MessagesDataStore():
         message = Message(id, text, url)
         return message
 
-    def get_all_messages(self):
+    def get_all_messages(self, appType=None):
         messages = []
-        for x in self.messageKeys:
+        if not appType:
+            appType = ''
+        for x in self.messageKeys[appType]:
             messages.append(self.get_message(x))
         return messages
 

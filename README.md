@@ -82,3 +82,4 @@ deactivate
 
 ### Create Required Non-Version-Controlled Files
 .gitignore
+deploy_tag

@@ -1,3 +1,9 @@
+# 2016-02-14
+
+- Added version for milder swear words.
+- Allow deployment of app instances for different reasons based on namespace,
+    such as for different languages.
+
 # 2016-02-12
 
 - Fully implemented signon and signout functionality.
