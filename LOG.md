@@ -1,3 +1,9 @@
+# 2016-02-14
+
+- Added version for milder swear words.
+- Allow deployment of app instances for different reasons based on namespace,
+    such as for different languages.
+
 # 2016-02-12
 
 - Fully implemented signon and signout functionality.
@@ -10,6 +16,9 @@
 - Cleaned up frontend functionality and layout.
     - Added custom CSS styles.
     - Implemented loading of last n number of broadcasts upon signon.
+- Added deployTag for controlling caching of static elements.
+- Recorded and included audio.
+- Implemented audio toggle to mute all broadcasted sounds.
 - Fixed various bugs.
 
 # 2016-02-11

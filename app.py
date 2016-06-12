@@ -5,6 +5,7 @@ import datetime
 import eventlet
 import socketio
 import lib.bottle.bottle as bottle
+import env_config
 from api.broadcasts_response import BroadcastsResponse
 
 sio = socketio.Server()
@@ -34,8 +35,7 @@ def handle_event(sid, json):
     user = signonResponse.get_user_from_session_id(sessionID)
     if not user:
         return {}
-    #cgi.escape(json['data']['message'])
-    broadcastsResponse = BroadcastsResponse()
+    broadcastsResponse = BroadcastsResponse(env_config.appType)
     message, broadcastID = broadcastsResponse.process_broadcast(messageID, user)
     if message:
         timestamp = time.time()
@@ -55,13 +55,14 @@ def handle_event(sid, json):
             )
         })
 
+deployTag = open('deploy_tag', 'r').read().strip()
 app = bottle.Bottle()
 
 @app.route('/')
 @app.route('/app')
 def render_index():
     from api.broadcasts_response import BroadcastsResponse
-    broadcastsResponse = BroadcastsResponse()
+    broadcastsResponse = BroadcastsResponse(env_config.appType)
     messages = broadcastsResponse.get_all_messages()
     messageInputs = bottle.template('elements-message-input', messages=messages)
     #print(messageInputs)
@@ -74,6 +75,7 @@ def render_index():
         sessionID = ''
     return bottle.template(
         'index',
+        deployTag=deployTag,
         messageInputs=messageInputs,
         sessionID=sessionID
     )
@@ -83,7 +85,7 @@ def render_index():
 @app.get('/api/broadcasts/')
 def get_broadcasts():
     from api.broadcasts_response import BroadcastsResponse
-    broadcastsResponse = BroadcastsResponse()
+    broadcastsResponse = BroadcastsResponse(env_config.appType)
     response = broadcastsResponse.get_last_broadcasts_response(10)
     return json.dumps(response)
 
@@ -91,7 +93,7 @@ def get_broadcasts():
 @app.get('/api/messages/')
 def get_broadcasts():
     from api.broadcasts_response import BroadcastsResponse
-    broadcastsResponse = BroadcastsResponse()
+    broadcastsResponse = BroadcastsResponse(env_config.appType)
     messages = broadcastsResponse.get_all_messages_response()
     return messages
 
@@ -156,4 +158,4 @@ def static_respond(path):
 
 if __name__ == '__main__':
     app = socketio.Middleware(sio, app)
-    eventlet.wsgi.server(eventlet.listen(('', 5000)), app)
+    eventlet.wsgi.server(eventlet.listen(('', env_config.appPort)), app)

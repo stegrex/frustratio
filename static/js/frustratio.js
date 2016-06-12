@@ -2,6 +2,16 @@ $(document).ready(function() {
 
     var socket;
     var messages;
+    var audioToggle = true;
+
+    $('#audio-toggle').on('change', function(event) {
+        console.log($(this).prop('checked'));
+        if ($(this).prop('checked')) {
+            audioToggle = true;
+        } else {
+            audioToggle = false;
+        }
+    });
 
     var init = function() {
         $.ajax({
@@ -23,6 +33,9 @@ $(document).ready(function() {
         });
         socket.on('messageResponse', function(response) {
             console.log(response);
+            if (audioToggle) {
+                $('#audio-' + response['messageID'])[0].play();
+            }
             $('#broadcast').prepend(response['html']);
         });
         renewUser();
@@ -35,19 +48,24 @@ $(document).ready(function() {
             success: function(data) {
                 var broadcasts = $.parseJSON(data);
                 $($.parseJSON(data)).each(function() {
-                    var date = new Date(parseInt(this['createdTime']) * 1000);
-                    $('#broadcast').append(
-                        '<div class="message-panel">' +
-                            '<div class="message-username">' +
-                                this['broadcasterData']['displayName'] + ' broadcasted:' +
-                            '</div>' +
-                            '<div class="message-broadcast">' +
-                                messages[this['messageID']]['text'] +
-                            '</div>' +
-                            '<div class="message-timestamp">' + date.toISOString() + '</div>' +
-                        '</div>'
-                    );
-                    console.log(this);
+                    if (messages[this['messageID']]) {
+                        var date = new Date(parseInt(this['createdTime']) * 1000);
+                        $('#broadcast').append(
+                            '<div class="message-panel">' +
+                                '<div class="message-username">' +
+                                    '<span class="name">' +
+                                        this['broadcasterData']['displayName'] +
+                                    '</span>' +
+                                    ' broadcasted:' +
+                                '</div>' +
+                                '<div class="message-broadcast">' +
+                                    messages[this['messageID']]['text'] +
+                                '</div>' +
+                                '<div class="message-timestamp">' + date.toISOString() + '</div>' +
+                            '</div>'
+                        );
+                        console.log(this);
+                    }
                 });
             }
         });
@@ -97,6 +115,9 @@ $(document).ready(function() {
     $('.message').each(function() {
         var $this = $(this);
         $this.find('.play').click(function(event) {
+            $audio = $this.find('audio');
+            console.log($audio);
+            $audio[0].play();
             $(this).blur();
         });
         $this.find('.broadcast').click(function(event) {
