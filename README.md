@@ -83,3 +83,9 @@ deactivate
 ### Create Required Non-Version-Controlled Files
 .gitignore
 deploy_tag
+
+### Install Audio Files
+- Create static audio file directory to contain files.
+```
+mkdir /path/to/project/static/audio
+```
